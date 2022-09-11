@@ -35,4 +35,4 @@ func (HttpContext) index(HttpContext ctx){
 }
 
 httpHandle("GET", "/index", index);
-httpRun(":8000");
+httpRun(":80");
