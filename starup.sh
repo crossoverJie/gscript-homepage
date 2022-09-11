@@ -1,1 +1,1 @@
-nohup gscript index.gs > index.log
+nohup gscript index.gs >index.log 2>&1 &
