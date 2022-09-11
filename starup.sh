@@ -1,0 +1,1 @@
+nohup gscript index.gs > index.log
