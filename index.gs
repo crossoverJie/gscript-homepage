@@ -35,4 +35,9 @@ func (HttpContext) index(HttpContext ctx){
 }
 
 httpHandle("GET", "/index", index);
-httpRun(":8000");
+string[] args = getOSArgs();
+if (args[2] != nil){
+    httpRun(":" + args[2]);
+}else {
+    httpRun(":8000");
+}
