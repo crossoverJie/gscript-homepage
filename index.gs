@@ -16,6 +16,7 @@ func (HttpContext) index(HttpContext ctx){
     string j = JSON(gs);
     println(j);
     string local = getCurrentTime("Asia/Shanghai","2006-01-02 15:04:05");
+    println("local=" + local);
     string html = ^
         <html>
             <title>GScript</title>
