@@ -30,7 +30,7 @@ func (HttpContext) index(HttpContext ctx){
 ^+ j +^
             </pre>
             <h1>current ^+ local +^</h1>
-            <p><a href="https://github.com/crossoverjie/gscript">GScript source code</a></p>
+            <p><a href="https://github.com/crossoverjie/gscript-homepage">GScript-homepace source code</a></p>
         </html>
     ^;
     ctx.HTML(200, html);
