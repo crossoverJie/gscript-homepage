@@ -1,1 +1,1 @@
-nohup gscript index.gs >index.log 2>&1 &
+nohup gscript index.gs 8000>index.log 2>&1 &
