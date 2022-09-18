@@ -27,12 +27,14 @@ func (HttpContext) index(HttpContext ctx){
 |_  |___|___|_| |_|  _|_|  
 |___|             |_|   v0.0.7   
 
-^+ j +^
+%s
             </pre>
-            <h1>current ^+ local +^</h1>
+            <h1>current %s </h1>
             <p><a href="https://github.com/crossoverjie/gscript-homepage">GScript-homepace source code</a></p>
         </html>
     ^;
+    html = sprintf(html, j, local);
+
     ctx.HTML(200, html);
 }
 
