@@ -10,12 +10,19 @@ class GScript{
     }
 }
 
+class RunResponse{
+    string body;
+    string error;
+}
+
+System s = System();
+DateTime d = DateTime();
 func (HttpContext) index(HttpContext ctx){
     string[] features = {"statically", "strongly"};
     GScript gs = GScript("crossoverJie",features, "2022");
     string j = JSON(gs);
     println(j);
-    string local = getCurrentTime("Asia/Shanghai","2006-01-02 15:04:05");
+    string local = d.getCurrentTime("Asia/Shanghai","2006-01-02 15:04:05");
     println("local=" + local);
     string html = ^
         <html>
@@ -38,8 +45,21 @@ func (HttpContext) index(HttpContext ctx){
     ctx.HTML(200, html);
 }
 
+func (HttpContext) run(HttpContext ctx) {
+    string body = ctx.postFormValue("body");
+    // println(body);
+    string fileName = d.unix("Asia/Shanghai") + "temp.gs" ;
+    s.writeFile(fileName, body, 438);
+    string res = s.command("./gscript", fileName);
+    s.remove(fileName);
+    RunResponse r = RunResponse();
+    r.body = res;
+    ctx.JSON(200, r);
+}
+
 httpHandle("GET", "/index", index);
-string[] args = getOSArgs();
+httpHandle("POST", "/run", run);
+string[] args = s.getOSArgs();
 if (len(args) ==3){
     httpRun(":" + args[2]);
 }else {
