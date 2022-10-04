@@ -47,8 +47,10 @@ func (HttpContext) index(HttpContext ctx){
 
 func (HttpContext) run(HttpContext ctx) {
     string body = ctx.postFormValue("body");
+    println("===");
+    println(body);
+    println("===");
     RunResponse r = RunResponse();
-    // println(body);
     if (body == ""){
         r.body = "empty code";
         ctx.JSON(200, r);
