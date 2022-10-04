@@ -1,20 +1,20 @@
-import { createRouter, createWebHistory } from "vue-router";
+import {createRouter, createWebHashHistory} from "vue-router";
 
 
 const routes = [
   {
     path: '/',
-    redirect: '/homePage'
+    redirect: '/index'
   },
   {
-    path: '/homePage',
+    path: '/index',
     name: 'HomePage',
     component: () => import('../pages/Layout.vue')
   },
 ]
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes
 })
 
