@@ -7,7 +7,7 @@ let defaultCode = [
   {
     value:'1',
     label: 'Fibonacci Closure',
-    code:'void fib(){\n' +
+    code:'func int() fib(){\n' +
         '    int a = 0;\n' +
         '    int b = 1;\n' +
         '    int fibonacci(){\n' +
