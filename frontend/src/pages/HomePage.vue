@@ -3,7 +3,7 @@
     <div class="code">
       <div class="run-btn">
         <t-space>
-          <t-button @click="run" :loading="btnLoad">Run</t-button>
+          <t-button @click="run" :loading="btnLoad" theme="success">Run</t-button>
           <t-select style="width: 200px" v-model="selectCode" @change="change">
             <t-option v-for="item in defaultCode" :key="item.value" :label="item.label" :value="item.value" />
           </t-select>
@@ -11,7 +11,7 @@
       </div>
       <codemirror
           v-model="code"
-          placeholder="Code gose here..."
+          placeholder="Code goes here..."
           :style="style"
           :mode="mode"
           :spellcheck="spellcheck"
