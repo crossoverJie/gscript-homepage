@@ -11,8 +11,11 @@
     </template>
     <template #operations>
       <t-space>
-        <t-icon :name="theme === 'light' ? 'tips':'star-filled'" @click="mode = !mode"/>
-        <t-icon name="logo-github-filled" @click="jump" />
+        <t-icon :name="theme === 'light' ? 'tips':'heart-filled'" @click="mode = !mode"/>
+<!--        <t-icon name="logo-github-filled" @click="jump" />-->
+        <t-button variant="text">
+          <t-icon name="logo-github-filled" @click="jump" />
+        </t-button>
       </t-space>
     </template>
   </t-head-menu>
@@ -25,7 +28,7 @@ import {GlobalStore} from "../store/index.js";
 const store = GlobalStore();
 
 const jump = ()=>{
-  window.open("https://github.com/crossoverjie/gscript")
+  window.open("https://github.com/crossoverjie/gscript-homepage")
 }
 
 let theme = computed(() => {
