@@ -50,7 +50,7 @@ func (HttpContext) run(HttpContext ctx) {
     // println(body);
     string fileName = d.unix("Asia/Shanghai") + "temp.gs" ;
     s.writeFile(fileName, body, 438);
-    string res = s.command("./gscript", fileName);
+    string res = s.command("gscript", fileName);
     s.remove(fileName);
     RunResponse r = RunResponse();
     r.body = res;
