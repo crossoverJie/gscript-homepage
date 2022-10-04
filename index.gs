@@ -47,7 +47,8 @@ func (HttpContext) index(HttpContext ctx){
 
 func (HttpContext) run(HttpContext ctx) {
     string body = ctx.postFormValue("body");
-    println("===");
+    string local = d.getCurrentTime("Asia/Shanghai","2006-01-02 15:04:05");
+    println("===" + local);
     println(body);
     println("===");
     RunResponse r = RunResponse();
