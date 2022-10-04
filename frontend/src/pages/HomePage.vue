@@ -22,7 +22,7 @@
       />
     </div>
     <div class="preview" v-loading="btnLoad">
-      {{result}}
+      <pre>{{result}}</pre>
     </div>
   </div>
 </template>
@@ -49,7 +49,7 @@ export default {
       indentWithTab: false,
       tabSize: 2,
       extensions: [javascript(), oneDark],
-      result:'',
+      result:"",
       btnLoad:false,
       selectCode:'0',
       defaultCode:defaultCode
