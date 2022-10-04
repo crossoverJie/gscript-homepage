@@ -1,12 +1,18 @@
 <template>
   <t-head-menu :theme="theme">
     <template #logo>
-      <img width="136" src="https://www.tencent.com/img/index/menu_logo_hover.png" alt="logo" />
+      <pre style="transform: scale(0.5);transform-origin: 0 50%;">
+      _     _
+      ___ ___ ___ ___|_|___| |_
+      | . |_ -|  _|  _| | . |  _|
+      |_  |___|___|_| |_|  _|_|
+      |___|             |_|   v0.0.9
+      </pre>
     </template>
     <template #operations>
       <t-space>
         <t-icon :name="theme === 'light' ? 'tips':'star-filled'" @click="mode = !mode"/>
-        <t-icon name="logo-github-filled" />
+        <t-icon name="logo-github-filled" @click="jump" />
       </t-space>
     </template>
   </t-head-menu>
@@ -17,6 +23,10 @@ import {ref, reactive, onMounted, computed, watch} from 'vue'
 import {GlobalStore} from "../store/index.js";
 
 const store = GlobalStore();
+
+const jump = ()=>{
+  window.open("https://github.com/crossoverjie/gscript")
+}
 
 let theme = computed(() => {
   return store.displayTheme

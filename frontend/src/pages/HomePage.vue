@@ -4,7 +4,7 @@
       <div class="run-btn">
         <t-space>
           <t-button @click="run" :loading="btnLoad">Run</t-button>
-          <t-select style="width: 200px" v-model="selectCode">
+          <t-select style="width: 200px" v-model="selectCode" @change="change">
             <t-option v-for="item in defaultCode" :key="item.value" :label="item.label" :value="item.value" />
           </t-select>
         </t-space>
@@ -42,9 +42,9 @@ export default {
   data() {
     return {
       code: '',
-      style: {height: "100%", width: '100%'},
+      style: {height: "calc(100% - 52px)", width: '100%'},
       mode: "text/x-c++src",
-      spellcheck: true,
+      spellcheck: false,
       autofocus: true,
       indentWithTab: false,
       tabSize: 2,
@@ -75,6 +75,9 @@ export default {
         console.log("content:" + content)
       });
     },
+    change(value){
+      this.code = defaultCode.find(i => i.value === this.selectCode).code;
+    }
   },
   mounted() {
     this.code = defaultCode.find(i => i.value === this.selectCode).code;

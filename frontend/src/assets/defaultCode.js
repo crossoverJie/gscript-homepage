@@ -2,6 +2,11 @@ let defaultCode = [
   {
     value:'0',
     label: 'Hello World',
+    code:'println("hello world");'
+  },
+  {
+    value:'1',
+    label: 'Fibonacci Closure',
     code:'void fib(){\n' +
         '    int a = 0;\n' +
         '    int b = 1;\n' +
