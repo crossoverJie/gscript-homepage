@@ -1,2 +1,5 @@
 # GScript-homepage
-This this [GScript](https://github.com/crossoverjie/gscript) homepage code.
+This is [GScript](https://github.com/crossoverjie/gscript) homepage source code.
+
+The backend api is implemented by [GScript](https://github.com/crossoverjie/gscript).
+
