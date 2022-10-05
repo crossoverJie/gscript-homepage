@@ -117,6 +117,21 @@ let defaultCode = [
         'bool b3 = hasCycle(l2);\n' +
         'println(b3);\n' +
         'assertEqual(b3, true);'
+  },
+  {
+    value:'4',
+    label: 'Print heart',
+    code:'for (float y= 1.5; y > -1.5; y = y - 0.15) {\n' +
+        '  for (float x = -1.5; x < 1.5; x = x + 0.07) {\n' +
+        '    float a = x*x + y*y - 1.0;\n' +
+        '    if (a*a*a < x*x*y*y*y) {\n' +
+        '      print("*");\n' +
+        '    } else {\n' +
+        '      print(" ");\n' +
+        '    }\n' +
+        '  }\n' +
+        '  println("");\n' +
+        '}'
   }
 ]
 
