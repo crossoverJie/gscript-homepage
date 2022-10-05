@@ -67,6 +67,8 @@ export default {
       };
       axios(config).then((res) =>{
         this.result = res.data.body;
+      }).catch((res) =>{
+        this.result = res.response.data;
       }).finally(() => this.btnLoad = false)
     },
     inputChange(content) {
