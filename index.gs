@@ -12,6 +12,8 @@ class GScript{
 
 class RunResponse{
     string body;
+    string ast;
+    string symbol;
     string error;
 }
 
@@ -62,6 +64,8 @@ func (HttpContext) run(HttpContext ctx) {
     string res = s.command("gscript", fileName);
     s.remove(fileName);
     r.body = res;
+    r.ast = dumpAST(body);
+    r.symbol=dumpSymbol(body);
     ctx.JSON(200, r);
 }
 
