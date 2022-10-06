@@ -26,21 +26,21 @@
         <t-tabs :value="value" :theme="theme" @change="handlerChange" style="height: 100%">
           <t-tab-panel value="first">
             <template #label>
-              <t-icon name="home" class="tabs-icon-margin"/>
+              <t-icon name="print" class="tabs-icon-margin"/>
               Output
             </template>
             <pre>{{ result }}</pre>
           </t-tab-panel>
           <t-tab-panel value="second">
             <template #label>
-              <t-icon name="calendar" class="tabs-icon-margin"/>
+              <t-icon name="chart" class="tabs-icon-margin"/>
               AST
             </template>
             <pre>{{ ast }}</pre>
           </t-tab-panel>
           <t-tab-panel value="third">
             <template #label>
-              <t-icon name="layers" class="tabs-icon-margin"/>
+              <t-icon name="code" class="tabs-icon-margin"/>
               Symbol
             </template>
             <pre>{{ symbol }}</pre>
