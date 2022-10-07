@@ -125,7 +125,7 @@ let defaultCode = [
         '  for (float x = -1.5; x < 1.5; x = x + 0.07) {\n' +
         '    float a = x*x + y*y - 1.0;\n' +
         '    if (a*a*a < x*x*y*y*y) {\n' +
-        '      print("*");\n' +
+        '      print("❤");\n' +
         '    } else {\n' +
         '      print(" ");\n' +
         '    }\n' +
