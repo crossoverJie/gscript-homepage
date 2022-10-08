@@ -1,13 +1,13 @@
-import {createRouter, createWebHashHistory} from "vue-router";
+import { createRouter, createWebHashHistory } from "vue-router";
 
 
 const routes = [
   {
     path: '/',
-    redirect: '/index'
+    redirect: '/homePage'
   },
   {
-    path: '/index',
+    path: '/homePage',
     name: 'HomePage',
     component: () => import('../pages/Layout.vue')
   },

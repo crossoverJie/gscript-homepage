@@ -12,6 +12,8 @@ class GScript{
 
 class RunResponse{
     string body;
+    string ast;
+    string symbol;
     string error;
 }
 
@@ -47,13 +49,23 @@ func (HttpContext) index(HttpContext ctx){
 
 func (HttpContext) run(HttpContext ctx) {
     string body = ctx.postFormValue("body");
-    // println(body);
+    string local = d.getCurrentTime("Asia/Shanghai","2006-01-02 15:04:05");
+    println("===" + local);
+    println(body);
+    println("===");
+    RunResponse r = RunResponse();
+    if (body == ""){
+        r.body = "empty code";
+        ctx.JSON(200, r);
+        return;
+    }
     string fileName = d.unix("Asia/Shanghai") + "temp.gs" ;
     s.writeFile(fileName, body, 438);
-    string res = s.command("./gscript", fileName);
+    string res = s.command("gscript", fileName);
     s.remove(fileName);
-    RunResponse r = RunResponse();
     r.body = res;
+    r.ast = dumpAST(body);
+    r.symbol=dumpSymbol(body);
     ctx.JSON(200, r);
 }
 
