@@ -24,4 +24,14 @@ onMounted(() => {
 .layout-main{
   height: 100vh;
 }
+@media screen and (max-width: 769px) {
+  .layout-main{
+    height: 100%;
+    min-height: 100vh;
+  }
+}
+.t-layout__content{
+  display: flex;
+  flex-direction: column;
+}
 </style>
