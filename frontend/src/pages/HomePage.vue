@@ -12,8 +12,9 @@
       <codemirror
           v-model="code"
           placeholder="Code goes here..."
-          :style="style"
+          :class="['codemirror',displayTheme]"
           :mode="mode"
+          theme="idea"
           :spellcheck="spellcheck"
           :autofocus="autofocus"
           :indent-with-tab="indentWithTab"
@@ -22,32 +23,29 @@
       />
     </div>
     <div class="preview" v-loading="btnLoad">
-      <t-space direction="vertical" style="width:100%;height: 100%">
-        <t-tabs :value="value" :theme="theme" @change="handlerChange" style="height: 100%">
-          <t-tab-panel value="first">
-            <template #label>
-              <t-icon name="print" class="tabs-icon-margin"/>
-              Output
-            </template>
-            <pre>{{ result }}</pre>
-          </t-tab-panel>
-          <t-tab-panel value="second">
-            <template #label>
-              <t-icon name="chart" class="tabs-icon-margin"/>
-              AST
-            </template>
-            <pre>{{ ast }}</pre>
-          </t-tab-panel>
-          <t-tab-panel value="third">
-            <template #label>
-              <t-icon name="code" class="tabs-icon-margin"/>
-              Symbol
-            </template>
-            <pre>{{ symbol }}</pre>
-          </t-tab-panel>
-        </t-tabs>
-      </t-space>
-
+      <t-tabs :value="value" :theme="theme" @change="handlerChange">
+        <t-tab-panel value="first">
+          <template #label>
+            <t-icon name="print" class="tabs-icon-margin"/>
+            Output
+          </template>
+          <pre>{{ result }}</pre>
+        </t-tab-panel>
+        <t-tab-panel value="second">
+          <template #label>
+            <t-icon name="chart" class="tabs-icon-margin"/>
+            AST
+          </template>
+          <pre>{{ ast }}</pre>
+        </t-tab-panel>
+        <t-tab-panel value="third">
+          <template #label>
+            <t-icon name="code" class="tabs-icon-margin"/>
+            Symbol
+          </template>
+          <pre>{{ symbol }}</pre>
+        </t-tab-panel>
+      </t-tabs>
     </div>
   </div>
 </template>
@@ -59,6 +57,7 @@ import {Codemirror} from "vue-codemirror";
 import {javascript} from "@codemirror/lang-javascript";
 import {oneDark} from "@codemirror/theme-one-dark";
 import {defaultCode} from "../assets/defaultCode.js";
+import {GlobalStore} from "../store/index.js";
 
 export default {
   components: {
@@ -67,13 +66,12 @@ export default {
   data() {
     return {
       code: '',
-      style: {height: "calc(100% - 52px - 20px)", width: '100%'},
       mode: "text/x-c++src",
       spellcheck: false,
       autofocus: true,
       indentWithTab: false,
       tabSize: 2,
-      extensions: [javascript(), oneDark],
+      //extensions: [javascript(),oneDark],
       result: "",
       ast: "",
       symbol: "",
@@ -83,6 +81,18 @@ export default {
       theme: 'card',
       defaultCode: defaultCode
     }
+  },
+  computed:{
+    extensions(){
+      let arr = [javascript()]
+      if(this.displayTheme === 'dark'){
+        arr.push(oneDark)
+      }
+      return arr
+    },
+    displayTheme(){
+      return GlobalStore().displayTheme
+    },
   },
   methods: {
     run() {
@@ -125,7 +135,8 @@ export default {
 <style scoped lang="less">
 .code-main {
   display: flex;
-  height: 100%;
+  flex: 1;
+  overflow: hidden;
 
   > div {
     flex: 1;
@@ -134,29 +145,79 @@ export default {
       display: flex;
       width: 100%;
       justify-content: flex-end;
-      padding: 10px 0;
+      padding: 0 0 10px 0;
     }
-    ::v-deep(.cm-scroller){
-      height: calc(100vh - 52px - 64px - 20px);
+  }
+
+  .code {
+    padding: 20px 10px 20px 20px;
+    display: flex;
+    flex-direction: column;
+
+    .codemirror {
+      flex: 1;
+      ::v-deep(.cm-focused){
+        outline: none;
+      }
+      ::v-deep(.cm-scroller)  {
+        height: calc(100vh - 64px - 42px - 40px);
+        width: calc(50vw - 30px);
+      }
+    }
+    .light{
+      ::v-deep(.cm-scroller){
+        background: white;
+      }
     }
   }
 
   .preview {
-    padding: 20px;
+    padding: 20px 20px 20px 10px;
+    display:flex;
+    ::v-deep(.t-tabs){
+      flex: 1;
+      .t-tabs__content{
+        padding: 0 20px;
+        height: calc(100vh - 64px - 42px - 38px);
+      }
+      .t-tabs__nav-item{
+        height: 38px;
+        line-height: 38px;
+        .t-icon{
+          margin-right: 8px;
+        }
+      }
+    }
+  }
+}
 
-    ::v-deep(.t-space-item) {
-      height: 100%;
-    }
+@media screen and (max-width: 769px) {
+  .code-main {
+    flex-direction: column;
+    height: unset;
+    flex: unset;
 
-    ::v-deep(.t-tabs__nav-item.t-size-m) {
-      height: 40px;
-      line-height: 40px;
+    .code {
+      padding: 20px 20px 10px 20px;
+      .codemirror {
+        flex: 1;
+        ::v-deep(.cm-scroller)  {
+          min-height: calc(50vh / 2);
+          height: unset;
+          width: unset;
+        }
+      }
     }
-    ::v-deep(.t-tabs__content){
-      padding: 0 20px;
-    }
-    ::v-deep(.tabs-icon-margin){
-      margin-right: 8px;
+    .preview{
+      padding: 10px 20px 20px 20px;
+      min-height: calc(50vh / 2);
+      ::v-deep(.t-tabs){
+        .t-tabs__content{
+          padding: 0 20px;
+          height: unset;
+          overflow: auto;
+        }
+      }
     }
   }
 }
