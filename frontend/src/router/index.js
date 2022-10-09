@@ -4,11 +4,7 @@ import { createRouter, createWebHistory } from "vue-router";
 const routes = [
   {
     path: '/',
-    redirect: '/homePage'
-  },
-  {
-    path: '/homePage',
-    name: 'HomePage',
+    name: 'index',
     component: () => import('../pages/Layout.vue')
   },
 ]
