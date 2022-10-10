@@ -21,8 +21,13 @@
             </template>
           </t-button>
         </t-tooltip>
-        <t-tooltip content="关于Gscript">
-        <t-button shape="square" variant="text" @click="jump">
+        <t-tooltip content="About playground">
+        <t-button shape="square" variant="text" @click="jump('https://github.com/crossoverjie/gscript-homepage')">
+          <info-circle-filled-icon slot="icon"></info-circle-filled-icon>
+        </t-button>
+        </t-tooltip>
+        <t-tooltip content="Gscript">
+        <t-button shape="square" variant="text" @click="jump('https://github.com/crossoverjie/gscript')">
           <logo-github-filled-icon slot="icon"></logo-github-filled-icon>
         </t-button>
         </t-tooltip>
@@ -34,12 +39,12 @@
 <script setup>
 import {ref, reactive, onMounted, computed, watch} from 'vue'
 import {GlobalStore} from "../store/index.js";
-import { LogoGithubFilledIcon, TipsIcon, HeartFilledIcon } from 'tdesign-icons-vue-next';
+import { LogoGithubFilledIcon, TipsIcon, HeartFilledIcon, InfoCircleFilledIcon } from 'tdesign-icons-vue-next';
 
 const store = GlobalStore();
 
-const jump = ()=>{
-  window.open("https://github.com/crossoverjie/gscript-homepage")
+const jump = (url)=>{
+  window.open(url)
 }
 
 let theme = computed(() => {
