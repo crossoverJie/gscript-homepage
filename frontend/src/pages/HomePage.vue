@@ -179,6 +179,7 @@ export default {
       .t-tabs__content{
         padding: 0 20px;
         height: calc(100vh - 64px - 42px - 38px);
+        overflow: auto;
       }
       .t-tabs__nav-item{
         height: 38px;
@@ -215,7 +216,6 @@ export default {
         .t-tabs__content{
           padding: 0 20px;
           height: unset;
-          overflow: auto;
         }
       }
     }
