@@ -10,12 +10,22 @@
       </pre>
     </template>
     <template #operations>
-      <t-space>
-        <t-icon :name="theme === 'light' ? 'tips':'heart-filled'" @click="mode = !mode"/>
-<!--        <t-icon name="logo-github-filled" @click="jump" />-->
-        <t-button variant="text">
-          <t-icon name="logo-github-filled" @click="jump" />
+      <t-space class="space">
+        <t-tooltip content="切换主题">
+          <t-button shape="square" variant="text" @click="mode = !mode">
+            <template v-if="theme === 'light'">
+              <heart-filled-icon slot="icon"/>
+            </template>
+            <template v-else>
+              <tips-icon slot="icon"/>
+            </template>
+          </t-button>
+        </t-tooltip>
+        <t-tooltip content="关于Gscript">
+        <t-button shape="square" variant="text" @click="jump">
+          <logo-github-filled-icon slot="icon"></logo-github-filled-icon>
         </t-button>
+        </t-tooltip>
       </t-space>
     </template>
   </t-head-menu>
@@ -24,6 +34,7 @@
 <script setup>
 import {ref, reactive, onMounted, computed, watch} from 'vue'
 import {GlobalStore} from "../store/index.js";
+import { LogoGithubFilledIcon, TipsIcon, HeartFilledIcon } from 'tdesign-icons-vue-next';
 
 const store = GlobalStore();
 
@@ -64,7 +75,13 @@ onMounted(() => {
 
 <style scoped lang='less'>
 :deep(.t-icon){
-  height: 30px;
-  width: 30px;
+  height: 25px;
+  width: 25px;
+}
+::v-deep(.t-menu__logo){
+  width: 70px;
+}
+::v-deep(.t-menu__operations){
+  margin-right: 20px !important;
 }
 </style>
